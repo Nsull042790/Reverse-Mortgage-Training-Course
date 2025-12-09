@@ -457,29 +457,268 @@ button:disabled {
     font-size: 18px;
 }
 
+/* Week Card Container (with Learn/Quiz buttons) */
+.week-card-container {
+    background-color: white;
+    border-radius: 16px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    margin-bottom: 12px;
+    overflow: hidden;
+    transition: box-shadow 0.2s;
+}
+
+.week-card-container:hover {
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+}
+
+.week-card-info {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 20px;
+}
+
+.week-card-info h3 {
+    color: var(--navy);
+    font-size: 16px;
+    margin: 4px 0;
+}
+
+.week-card-info .tagline {
+    color: #888;
+    font-size: 13px;
+    font-style: italic;
+}
+
+.week-card-actions {
+    display: flex;
+    border-top: 1px solid #eee;
+}
+
+.week-action-btn {
+    flex: 1;
+    padding: 14px;
+    font-size: 14px;
+    font-weight: 600;
+    border: none;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.week-action-btn.learn-btn {
+    background-color: white;
+    border-right: 1px solid #eee;
+    border: 2px solid;
+}
+
+.week-action-btn.learn-btn:hover {
+    background-color: rgba(0, 0, 0, 0.02);
+}
+
+.week-action-btn.quiz-btn {
+    color: white;
+}
+
+.week-action-btn.quiz-btn:hover {
+    filter: brightness(1.1);
+}
+
+/* ============ FLASHCARD STYLES ============ */
+.flashcard-container {
+    perspective: 1000px;
+    cursor: pointer;
+    margin-bottom: 24px;
+}
+
+.flashcard {
+    position: relative;
+    width: 100%;
+    min-height: 280px;
+    transition: transform 0.6s;
+    transform-style: preserve-3d;
+}
+
+.flashcard.flipped {
+    transform: rotateY(180deg);
+}
+
+.flashcard-front,
+.flashcard-back {
+    position: absolute;
+    width: 100%;
+    min-height: 280px;
+    backface-visibility: hidden;
+    border-radius: 20px;
+    padding: 32px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);
+}
+
+.flashcard-front {
+    background-color: white;
+}
+
+.flashcard-back {
+    transform: rotateY(180deg);
+    color: white;
+}
+
+.flashcard-icon {
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 32px;
+    margin-bottom: 20px;
+}
+
+.flashcard-icon-back {
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+.flashcard-question {
+    font-size: 22px;
+    font-weight: 600;
+    color: var(--navy);
+    line-height: 1.4;
+    margin-bottom: 16px;
+}
+
+.flashcard-answer {
+    font-size: 18px;
+    line-height: 1.5;
+    margin-bottom: 16px;
+}
+
+.flashcard-hint {
+    font-size: 13px;
+    color: #999;
+    margin-top: auto;
+}
+
+.flashcard-hint-back {
+    font-size: 13px;
+    opacity: 0.7;
+    margin-top: auto;
+}
+
+/* Flashcard Navigation */
+.flashcard-nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+}
+
+.flashcard-nav-btn {
+    padding: 12px 24px;
+    border-radius: 10px;
+    font-size: 14px;
+    font-weight: 600;
+    background-color: transparent;
+    border: 2px solid var(--navy);
+    color: var(--navy);
+    min-width: 120px;
+}
+
+.flashcard-nav-btn:disabled {
+    opacity: 0.3;
+    cursor: not-allowed;
+}
+
+.flashcard-dots {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.flashcard-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.flashcard-dot:hover {
+    transform: scale(1.3);
+}
+
 /* Responsive */
 @media (max-width: 480px) {
     .header-gradient h1 {
         font-size: 24px;
     }
-    
+
     .stats-bar {
         gap: 16px;
     }
-    
+
     .myth-fact-buttons {
         flex-direction: column;
     }
-    
+
     .question-card {
         padding: 16px;
     }
-    
+
     .results-card {
         padding: 24px;
     }
-    
+
     .score-number {
         font-size: 36px;
+    }
+
+    /* Flashcard responsive */
+    .flashcard {
+        min-height: 320px;
+    }
+
+    .flashcard-front,
+    .flashcard-back {
+        min-height: 320px;
+        padding: 24px;
+    }
+
+    .flashcard-question {
+        font-size: 18px;
+    }
+
+    .flashcard-answer {
+        font-size: 16px;
+    }
+
+    .flashcard-nav {
+        flex-wrap: wrap;
+        gap: 12px;
+    }
+
+    .flashcard-nav-btn {
+        min-width: 100px;
+        padding: 10px 16px;
+        font-size: 13px;
+    }
+
+    .flashcard-dots {
+        order: 3;
+        width: 100%;
+        margin-top: 8px;
+    }
+
+    .week-card-actions {
+        flex-direction: column;
+    }
+
+    .week-action-btn.learn-btn {
+        border-right: none;
+        border-bottom: 1px solid #eee;
     }
 }

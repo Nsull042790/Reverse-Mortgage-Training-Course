@@ -27,6 +27,70 @@ const weekThemes = {
     5: { color: colors.orange, icon: '🚀', name: 'Your Growth Plan', tagline: '"Reverse becomes a habit"' }
 };
 
+// ============ FLASHCARD LESSON DATABASE ============
+const weekLessons = {
+    1: [
+        { front: "What should we call a 'reverse mortgage'?", back: "Retirement Mortgage - It positions the product as a financial planning tool tied to a life stage, not a confusing mechanism.", icon: "🏷️" },
+        { front: "Who owns the home with a reverse mortgage?", back: "The borrower ALWAYS retains full title to their home. This is federally protected. The bank never owns it.", icon: "🏠" },
+        { front: "How many Americans turn 65 daily?", back: "11,000 Americans turn 65 every single day - a massive, growing market opportunity!", icon: "📈" },
+        { front: "How much tappable equity do seniors hold?", back: "Over $14 TRILLION in tappable home equity - an enormous untapped market for Retirement Mortgages.", icon: "💰" },
+        { front: "What happens to heirs?", back: "Heirs inherit the home AND any remaining equity after the loan is repaid. They can sell or refinance to keep it.", icon: "👨‍👩‍👧" },
+        { front: "Why reframe the language?", back: "The term 'reverse mortgage' carries outdated stigma. Reframing helps clients see it as a legitimate retirement planning tool.", icon: "💬" },
+        { front: "How should we position reverse mortgages?", back: "As a PROACTIVE financial planning tool - not a last resort or desperate measure.", icon: "🎯" },
+        { front: "What do seniors look for?", back: "Trust signals: Professionalism, Clarity, and Third-party validation. NOT aggressive sales tactics.", icon: "🤝" },
+        { front: "Market opportunity", back: "The purchase mortgage market is contracting while the senior market EXPANDS - this is where growth lives.", icon: "🚀" },
+        { front: "Who uses reverse mortgages today?", back: "Increasingly high-equity, high-credit borrowers use them as a STRATEGIC financial planning tool.", icon: "💎" }
+    ],
+    2: [
+        { front: "Where are your reverse leads?", back: "The gold is already in your CRM! Your existing database likely has many 55+ clients with significant equity.", icon: "💎" },
+        { front: "Best CRM filter for prospects?", back: "Age 55+ is the primary qualifier. Combined with equity data, it identifies your best reverse mortgage prospects.", icon: "🔍" },
+        { front: "What triggers should you set up?", back: "Birthday milestones, rate maturity dates, and property value changes - multiple triggers catch different opportunities.", icon: "⏰" },
+        { front: "How often to run Opportunity Reports?", back: "WEEKLY - keeps opportunities fresh and maintains consistent outreach momentum.", icon: "📊" },
+        { front: "How long should your pitch be?", back: "30 SECONDS max. Tone matters more than technical detail. Invite curiosity, don't sell.", icon: "⏱️" },
+        { front: "The 30-second pitch principle", back: "Don't sell - INVITE CURIOSITY. Focus on benefits first, details second.", icon: "🎣" },
+        { front: "Birthday automation works because...", back: "Milestone birthdays (55, 60, 65) are natural conversation starters about retirement planning.", icon: "🎂" },
+        { front: "Use ChatGPT for...", back: "Writing outreach, analyzing CRM notes, and personalizing messaging - efficiency tools, not replacement for human judgment.", icon: "🤖" },
+        { front: "The Equity Check-In Script", back: "\"Many of my clients 55+ are exploring ways to strengthen retirement cash flow using their home equity. Would you like a quick estimate?\"", icon: "📝" },
+        { front: "Why existing clients?", back: "They already trust you! No cold calling needed - warm conversations with people who know your name.", icon: "🤝" }
+    ],
+    3: [
+        { front: "What do seniors respond to?", back: "TRUST, not tactics. Patience and clarity beat pressure every single time.", icon: "🤝" },
+        { front: "The CARE Framework", back: "Clarify their needs, Align with goals, Reassure them, Educate without pressure.", icon: "💚" },
+        { front: "Seniors' top emotional drivers", back: "Comfort, Stability, and Independence - these are what matter most to them.", icon: "🏡" },
+        { front: "The 3R Value Story", back: "Retain ownership, Receive optional payments/LOC, Relax without forced monthly payments.", icon: "3️⃣" },
+        { front: "The Family Triangle", back: "Seniors, adult children, and advisors - each hears DIFFERENT benefits. Tailor your message!", icon: "👨‍👩‍👧" },
+        { front: "What adult children care about", back: "Protecting inheritance AND their parents' security. Address both concerns directly.", icon: "🛡️" },
+        { front: "Handling inheritance concerns", back: "\"Your heirs can still inherit the home. They choose to sell or refinance, and keep any equity above the loan balance.\"", icon: "🏠" },
+        { front: "Clarity vs Complexity", back: "Seniors want SIMPLICITY. If you can't explain it simply, you don't understand it well enough.", icon: "✨" },
+        { front: "Same message for everyone?", back: "NO! Each audience has different concerns. Tailor your message to what THEY care about.", icon: "🎯" },
+        { front: "Why trust matters most", back: "Seniors have seen every sales tactic. Authenticity and patience build the relationships that close deals.", icon: "⭐" }
+    ],
+    4: [
+        { front: "The AI Marketing Toolkit", back: "ChatGPT for content, SimpleApp for quick scenarios, Scenario Desk for polished results.", icon: "🛠️" },
+        { front: "When to use SimpleApp", back: "WHILE ON THE PHONE with curious prospects - fast scenarios with zero friction keep engagement high.", icon: "📱" },
+        { front: "55+ Outreach Email Sequence", back: "5 emails with education, scenarios, and simple CTAs like \"Reply YES to see your numbers.\"", icon: "📧" },
+        { front: "Short-form video length", back: "15-30 seconds - captures attention without losing your audience.", icon: "🎬" },
+        { front: "Advisor Partner Sequence", back: "6-email sequence targeting CPAs, Financial Planners, and Attorneys - key referral sources.", icon: "👔" },
+        { front: "Best social media posts", back: "\"Did you know?\" myth-busting posts - educate while challenging common misconceptions.", icon: "📱" },
+        { front: "Seniors and social media", back: "Today's seniors ARE tech-capable. Facebook especially reaches this demographic effectively.", icon: "👴" },
+        { front: "Simple CTAs work because...", back: "\"Reply YES\" reduces friction and increases response rates. Make it easy to engage.", icon: "✅" },
+        { front: "ChatGPT use cases", back: "Write outreach messages, build scripts, analyze CRM notes, personalize messaging at scale.", icon: "🤖" },
+        { front: "Never use AI for...", back: "Making lending decisions or replacing genuine client conversations. AI is a tool, not a replacement.", icon: "⚠️" }
+    ],
+    5: [
+        { front: "90-Day Plan: Prospects", back: "Identify 30-50 CRM prospects aged 55+ with equity. This gives you a solid pipeline to work systematically.", icon: "📋" },
+        { front: "90-Day Plan: Advisors", back: "Build 3 quality advisor relationships - CPAs, financial planners, or attorneys.", icon: "🤝" },
+        { front: "Weekly Outreach Block", back: "Commit to ONE 60-minute weekly block for consistent reverse mortgage prospecting.", icon: "📅" },
+        { front: "The Magic Question", back: "\"What are your long-term plans for the home?\" - naturally opens reverse mortgage conversations.", icon: "❓" },
+        { front: "Weekly scenario goal", back: "Submit 1-2 reverse scenarios per week. Consistent submissions build expertise and pipeline.", icon: "🎯" },
+        { front: "H4P for Realtors", back: "HECM for Purchase lets seniors buy a new home using a reverse mortgage - perfect for downsizers.", icon: "🏡" },
+        { front: "Three key partner categories", back: "Realtors (downsizers), Builders (senior housing), Advisors (financial planning).", icon: "👥" },
+        { front: "The Reverse Moment", back: "Integrate into EVERY loan consultation. Plant seeds proactively, don't wait for clients to ask.", icon: "🌱" },
+        { front: "Builder partnerships focus on...", back: "Lifestyle marketing for seniors: new construction near family, one-level living, senior communities.", icon: "🏗️" },
+        { front: "Your FIRST action after training", back: "Submit one scenario within 48 hours. Action beats perfection - build momentum immediately!", icon: "🚀" }
+    ]
+};
+
 // ============ QUESTION DATABASE ============
 const weekQuestions = {
     1: [
@@ -423,16 +487,239 @@ const QuizResults = ({ week, score, total, onRetry, onBack }) => {
     );
 };
 
+// ============ FLASHCARD LESSON COMPONENT ============
+const WeekLesson = ({ week, onBack, onStartQuiz }) => {
+    const [currentCard, setCurrentCard] = useState(0);
+    const [isFlipped, setIsFlipped] = useState(false);
+    const [viewedCards, setViewedCards] = useState(new Set());
+    const [lessonComplete, setLessonComplete] = useState(false);
+
+    const theme = weekThemes[week];
+    const cards = weekLessons[week];
+    const card = cards[currentCard];
+
+    const flipCard = () => {
+        if (!isFlipped) {
+            const newViewed = new Set(viewedCards);
+            newViewed.add(currentCard);
+            setViewedCards(newViewed);
+        }
+        setIsFlipped(!isFlipped);
+    };
+
+    const nextCard = () => {
+        if (currentCard < cards.length - 1) {
+            setCurrentCard(currentCard + 1);
+            setIsFlipped(false);
+        } else if (viewedCards.size === cards.length) {
+            setLessonComplete(true);
+        }
+    };
+
+    const prevCard = () => {
+        if (currentCard > 0) {
+            setCurrentCard(currentCard - 1);
+            setIsFlipped(false);
+        }
+    };
+
+    const progress = Math.round((viewedCards.size / cards.length) * 100);
+
+    if (lessonComplete) {
+        return (
+            React.createElement('div', { className: 'results-container' },
+                React.createElement('div', { className: 'results-card' },
+                    React.createElement('div', { className: 'results-emoji' }, '🎉'),
+                    React.createElement('h2', null, 'Lesson Complete!'),
+                    React.createElement('p', { className: 'results-sub' }, `You've reviewed all ${cards.length} flashcards for Week ${week}.`),
+                    React.createElement('div', {
+                        className: 'score-display',
+                        style: { backgroundColor: theme.color + '15' }
+                    },
+                        React.createElement('p', {
+                            className: 'score-number',
+                            style: { color: theme.color }
+                        }, `${cards.length}/${cards.length}`),
+                        React.createElement('p', { className: 'score-percentage' }, 'Cards Reviewed')
+                    ),
+                    React.createElement('div', { style: { display: 'flex', flexDirection: 'column', gap: 12 } },
+                        React.createElement('button', {
+                            onClick: onStartQuiz,
+                            style: {
+                                padding: 16,
+                                backgroundColor: theme.color,
+                                color: 'white',
+                                border: 'none',
+                                borderRadius: 10,
+                                fontSize: 16,
+                                fontWeight: 'bold',
+                                cursor: 'pointer'
+                            }
+                        }, '📝 Take the Quiz'),
+                        React.createElement('button', {
+                            onClick: () => { setCurrentCard(0); setIsFlipped(false); setViewedCards(new Set()); setLessonComplete(false); },
+                            style: {
+                                padding: 16,
+                                backgroundColor: 'transparent',
+                                color: colors.navy,
+                                border: `2px solid ${colors.navy}`,
+                                borderRadius: 10,
+                                fontSize: 16,
+                                cursor: 'pointer'
+                            }
+                        }, '🔄 Review Again'),
+                        React.createElement('button', {
+                            onClick: onBack,
+                            style: {
+                                padding: 12,
+                                backgroundColor: 'transparent',
+                                color: '#666',
+                                border: 'none',
+                                fontSize: 14,
+                                cursor: 'pointer'
+                            }
+                        }, '← Back to Menu')
+                    )
+                )
+            )
+        );
+    }
+
+    return (
+        React.createElement('div', { style: { minHeight: '100vh', backgroundColor: colors.lightBg } },
+            // Header
+            React.createElement('div', {
+                className: 'quiz-header',
+                style: { backgroundColor: theme.color }
+            },
+                React.createElement('button', {
+                    onClick: onBack,
+                    className: 'quiz-header-btn'
+                }, '← Exit'),
+                React.createElement('div', { style: { textAlign: 'center' } },
+                    React.createElement('p', { style: { color: 'white', fontSize: 14, opacity: 0.9 } }, `Week ${week} Lesson`),
+                    React.createElement('p', { style: { color: 'white', fontWeight: 'bold' } }, theme.name)
+                ),
+                React.createElement('div', { className: 'quiz-score-badge' }, `${viewedCards.size}/${cards.length}`)
+            ),
+            // Progress bar
+            React.createElement('div', { className: 'progress-bar-container' },
+                React.createElement('div', {
+                    className: 'progress-bar-fill',
+                    style: {
+                        width: `${progress}%`,
+                        backgroundColor: theme.color
+                    }
+                })
+            ),
+            // Flashcard area
+            React.createElement('div', { className: 'quiz-container' },
+                // Card counter
+                React.createElement('div', {
+                    style: {
+                        textAlign: 'center',
+                        marginBottom: 16,
+                        color: '#666',
+                        fontSize: 14
+                    }
+                }, `Card ${currentCard + 1} of ${cards.length}`),
+
+                // Flashcard
+                React.createElement('div', {
+                    className: 'flashcard-container',
+                    onClick: flipCard
+                },
+                    React.createElement('div', {
+                        className: `flashcard ${isFlipped ? 'flipped' : ''}`,
+                        style: { '--card-color': theme.color }
+                    },
+                        // Front of card
+                        React.createElement('div', { className: 'flashcard-front' },
+                            React.createElement('div', {
+                                className: 'flashcard-icon',
+                                style: { backgroundColor: theme.color + '20' }
+                            }, card.icon),
+                            React.createElement('p', { className: 'flashcard-question' }, card.front),
+                            React.createElement('p', { className: 'flashcard-hint' }, 'Tap to reveal answer')
+                        ),
+                        // Back of card
+                        React.createElement('div', {
+                            className: 'flashcard-back',
+                            style: { backgroundColor: theme.color }
+                        },
+                            React.createElement('div', { className: 'flashcard-icon flashcard-icon-back' }, '💡'),
+                            React.createElement('p', { className: 'flashcard-answer' }, card.back),
+                            React.createElement('p', { className: 'flashcard-hint-back' }, 'Tap to see question')
+                        )
+                    )
+                ),
+
+                // Navigation buttons
+                React.createElement('div', { className: 'flashcard-nav' },
+                    React.createElement('button', {
+                        onClick: prevCard,
+                        disabled: currentCard === 0,
+                        className: 'flashcard-nav-btn',
+                        style: { opacity: currentCard === 0 ? 0.3 : 1 }
+                    }, '← Previous'),
+                    React.createElement('div', { className: 'flashcard-dots' },
+                        cards.map((_, i) =>
+                            React.createElement('div', {
+                                key: i,
+                                className: 'flashcard-dot',
+                                style: {
+                                    backgroundColor: i === currentCard ? theme.color : viewedCards.has(i) ? theme.color + '50' : '#ddd'
+                                },
+                                onClick: (e) => { e.stopPropagation(); setCurrentCard(i); setIsFlipped(false); }
+                            })
+                        )
+                    ),
+                    React.createElement('button', {
+                        onClick: nextCard,
+                        className: 'flashcard-nav-btn',
+                        style: {
+                            backgroundColor: isFlipped ? theme.color : 'transparent',
+                            color: isFlipped ? 'white' : colors.navy,
+                            border: isFlipped ? 'none' : `2px solid ${colors.navy}`
+                        }
+                    }, currentCard === cards.length - 1 && viewedCards.size === cards.length ? 'Complete ✓' : 'Next →')
+                ),
+
+                // Skip to quiz option
+                React.createElement('button', {
+                    onClick: onStartQuiz,
+                    style: {
+                        width: '100%',
+                        marginTop: 24,
+                        padding: 12,
+                        backgroundColor: 'transparent',
+                        border: `1px solid ${theme.color}`,
+                        borderRadius: 8,
+                        color: theme.color,
+                        fontSize: 14,
+                        cursor: 'pointer'
+                    }
+                }, 'Skip to Quiz →')
+            )
+        )
+    );
+};
+
 // ============ MAIN APP ============
 function App() {
     const [screen, setScreen] = useState('menu');
     const [selectedWeek, setSelectedWeek] = useState(null);
     const [lastScore, setLastScore] = useState({ score: 0, total: 0 });
     const [progress, setProgress] = useState(getProgress());
-    
+
     const startQuiz = (week) => {
         setSelectedWeek(week);
         setScreen('quiz');
+    };
+
+    const startLesson = (week) => {
+        setSelectedWeek(week);
+        setScreen('lesson');
     };
     
     const handleComplete = (score, total) => {
@@ -457,14 +744,22 @@ function App() {
         setSelectedWeek(null);
     };
     
+    if (screen === 'lesson' && selectedWeek) {
+        return React.createElement(WeekLesson, {
+            week: selectedWeek,
+            onBack: goToMenu,
+            onStartQuiz: () => setScreen('quiz')
+        });
+    }
+
     if (screen === 'quiz' && selectedWeek) {
-        return React.createElement(WeekQuiz, { 
-            week: selectedWeek, 
+        return React.createElement(WeekQuiz, {
+            week: selectedWeek,
             onBack: goToMenu,
             onComplete: handleComplete
         });
     }
-    
+
     if (screen === 'results') {
         return React.createElement(QuizResults, {
             week: selectedWeek,
@@ -505,34 +800,46 @@ function App() {
                         const theme = weekThemes[week];
                         const weekScore = progress.weekScores[`week${week}`];
                         const bestScore = weekScore ? Math.round((weekScore.score / weekScore.total) * 100) : null;
-                        
-                        return React.createElement('button', {
+
+                        return React.createElement('div', {
                             key: week,
-                            onClick: () => startQuiz(week),
-                            className: 'week-card'
+                            className: 'week-card-container'
                         },
-                            React.createElement('div', { 
-                                className: 'week-icon',
-                                style: { backgroundColor: theme.color }
-                            }, theme.icon),
-                            React.createElement('div', { style: { flex: 1 } },
-                                React.createElement('div', { style: { display: 'flex', alignItems: 'center', gap: 8 } },
-                                    React.createElement('span', { 
-                                        className: 'week-badge',
-                                        style: { color: theme.color, backgroundColor: theme.color + '20' }
-                                    }, `WEEK ${week}`),
-                                    bestScore !== null && React.createElement('span', {
-                                        style: {
-                                            fontSize: 11,
-                                            color: bestScore >= 70 ? colors.green : colors.gold,
-                                            fontWeight: 'bold'
-                                        }
-                                    }, `${bestScore >= 90 ? '🏆' : bestScore >= 70 ? '⭐' : ''} Best: ${bestScore}%`)
-                                ),
-                                React.createElement('h3', null, theme.name),
-                                React.createElement('p', { className: 'tagline' }, theme.tagline)
+                            React.createElement('div', { className: 'week-card-info' },
+                                React.createElement('div', {
+                                    className: 'week-icon',
+                                    style: { backgroundColor: theme.color }
+                                }, theme.icon),
+                                React.createElement('div', { style: { flex: 1 } },
+                                    React.createElement('div', { style: { display: 'flex', alignItems: 'center', gap: 8, flexWrap: 'wrap' } },
+                                        React.createElement('span', {
+                                            className: 'week-badge',
+                                            style: { color: theme.color, backgroundColor: theme.color + '20' }
+                                        }, `WEEK ${week}`),
+                                        bestScore !== null && React.createElement('span', {
+                                            style: {
+                                                fontSize: 11,
+                                                color: bestScore >= 70 ? colors.green : colors.gold,
+                                                fontWeight: 'bold'
+                                            }
+                                        }, `${bestScore >= 90 ? '🏆' : bestScore >= 70 ? '⭐' : ''} Best: ${bestScore}%`)
+                                    ),
+                                    React.createElement('h3', null, theme.name),
+                                    React.createElement('p', { className: 'tagline' }, theme.tagline)
+                                )
                             ),
-                            React.createElement('div', { style: { color: theme.color, fontSize: 20 } }, '→')
+                            React.createElement('div', { className: 'week-card-actions' },
+                                React.createElement('button', {
+                                    onClick: () => startLesson(week),
+                                    className: 'week-action-btn learn-btn',
+                                    style: { borderColor: theme.color, color: theme.color }
+                                }, '📚 Learn'),
+                                React.createElement('button', {
+                                    onClick: () => startQuiz(week),
+                                    className: 'week-action-btn quiz-btn',
+                                    style: { backgroundColor: theme.color }
+                                }, '📝 Quiz')
+                            )
                         );
                     })
                 ),
