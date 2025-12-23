@@ -20,7 +20,7 @@ const colors = {
 
 // Week themes
 const weekThemes = {
-    1: { color: colors.pink, icon: '🔄', name: 'Reframing Reverse', tagline: '"Reverse = Retirement Mortgage"' },
+    1: { color: colors.pink, icon: '🚀', name: 'The New Era of Reverse', tagline: '"What\'s Changed & Why It Matters"' },
     2: { color: colors.cyan, icon: '💎', name: 'Mining Your Database', tagline: '"The gold is already in your CRM"' },
     3: { color: colors.green, icon: '💬', name: 'Messaging That Works', tagline: '"It\'s how people hear it"' },
     4: { color: colors.purple, icon: '🤖', name: 'Marketing in the AI Era', tagline: '"Scale without scaling workload"' },
@@ -30,16 +30,16 @@ const weekThemes = {
 // ============ FLASHCARD LESSON DATABASE ============
 const weekLessons = {
     1: [
-        { front: "What should we call a 'reverse mortgage'?", back: "Retirement Mortgage - It positions the product as a financial planning tool tied to a life stage, not a confusing mechanism.", icon: "🏷️" },
-        { front: "Who owns the home with a reverse mortgage?", back: "The borrower ALWAYS retains full title to their home. This is federally protected. The bank never owns it.", icon: "🏠" },
-        { front: "How many Americans turn 65 daily?", back: "11,000 Americans turn 65 every single day - a massive, growing market opportunity!", icon: "📈" },
-        { front: "How much tappable equity do seniors hold?", back: "Over $14 TRILLION in tappable home equity - an enormous untapped market for Retirement Mortgages.", icon: "💰" },
-        { front: "What happens to heirs?", back: "Heirs inherit the home AND any remaining equity after the loan is repaid. They can sell or refinance to keep it.", icon: "👨‍👩‍👧" },
-        { front: "Why reframe the language?", back: "The term 'reverse mortgage' carries outdated stigma. Reframing helps clients see it as a legitimate retirement planning tool.", icon: "💬" },
-        { front: "How should we position reverse mortgages?", back: "As a PROACTIVE financial planning tool - not a last resort or desperate measure.", icon: "🎯" },
-        { front: "What do seniors look for?", back: "Trust signals: Professionalism, Clarity, and Third-party validation. NOT aggressive sales tactics.", icon: "🤝" },
-        { front: "Market opportunity", back: "The purchase mortgage market is contracting while the senior market EXPANDS - this is where growth lives.", icon: "🚀" },
-        { front: "Who uses reverse mortgages today?", back: "Increasingly high-equity, high-credit borrowers use them as a STRATEGIC financial planning tool.", icon: "💎" }
+        { front: "The AI-Driven Consumer Shift", back: "Homeowners no longer start with lenders — they start with AI tools (ChatGPT, Google AI, voice assistants) asking life-planning questions, not product questions.", icon: "🤖" },
+        { front: "What questions are consumers asking AI?", back: "\"Can I retire if my house is paid off?\" \"How do I eliminate my mortgage payment without selling?\" \"How can I use my equity without downsizing?\"", icon: "❓" },
+        { front: "Needs-based vs Rate-based", back: "Today's questions are NEEDS-BASED, not rate-based — and they naturally lead to solutions that leverage home equity. Reverse shows up organically in these searches.", icon: "🎯" },
+        { front: "The New Retirement Reality", back: "Cash-flow STRESS vs. net-worth wealth. Early retirement, inflation, and rising fixed expenses are creating new challenges traditional products can't solve.", icon: "💰" },
+        { front: "Why traditional strategies fail", back: "Traditional refi and HELOC strategies are FAILING the 55+ demographic. They don't address cash-flow needs or eliminate payment obligations.", icon: "❌" },
+        { front: "Reverse Repositioned", back: "Reverse is now a CASH-FLOW PLANNING TOOL. It supports longevity, flexibility, and independence — not a last resort.", icon: "🔄" },
+        { front: "Why 'last-resort' language hurts", back: "\"Last-resort loan\" language is OUTDATED and DAMAGING. It prevents clients from seeing reverse as a legitimate retirement planning strategy.", icon: "🚫" },
+        { front: "Why Forward LOs must adapt", back: "Consumers are already being educated BEFORE they talk to you. If you can't speak to reverse options, they'll find someone who can — or assume you're not modern.", icon: "⚠️" },
+        { front: "Three reasons to learn reverse", back: "1) Protects referral relationships 2) Keeps you relevant as clients age 3) Unlocks conversations competitors are missing.", icon: "🔑" },
+        { front: "The key question for every LO", back: "\"The question isn't WHETHER your clients will learn about reverse — it's whether they'll learn about it WITH you or WITHOUT you.\"", icon: "💡" }
     ],
     2: [
         { front: "Where are your reverse leads?", back: "The gold is already in your CRM! Your existing database likely has many 55+ clients with significant equity.", icon: "💎" },
@@ -94,17 +94,17 @@ const weekLessons = {
 // ============ QUESTION DATABASE ============
 const weekQuestions = {
     1: [
-        { type: 'mythfact', question: "The bank takes ownership of your home with a reverse mortgage.", answer: false, explanation: "The borrower ALWAYS retains title to their home. This is one of the most persistent myths we need to bust." },
-        { type: 'mythfact', question: "Reverse mortgages are only for desperate seniors with no other options.", answer: false, explanation: "Increasingly used by high-equity, high-credit borrowers as a strategic financial planning tool." },
-        { type: 'mythfact', question: "11,000 Americans turn 65 every single day.", answer: true, explanation: "This is true! It represents a massive, growing market opportunity for reverse mortgages." },
-        { type: 'mythfact', question: "Seniors hold over $14 trillion in tappable home equity.", answer: true, explanation: "Correct! This is an enormous untapped market for Retirement Mortgages." },
-        { type: 'mythfact', question: "Heirs inherit nothing if parents get a reverse mortgage.", answer: false, explanation: "Heirs inherit the home and any remaining equity after the loan is repaid. They can sell or refinance." },
-        { type: 'mythfact', question: "The purchase mortgage market is contracting while the senior market expands.", answer: true, explanation: "This is why reverse mortgages represent a growth opportunity when other segments are shrinking." },
-        { type: 'multiple', question: "What should we call a 'reverse mortgage' in modern language?", options: ["Senior Loan", "Retirement Mortgage", "Equity Release", "Home Conversion"], answer: 1, explanation: "'Retirement Mortgage' positions it as a financial planning tool tied to a life stage, not a mechanism." },
-        { type: 'multiple', question: "What is the PRIMARY reason to reframe reverse mortgage language?", options: ["Legal requirements", "To hide what it really is", "To overcome outdated stigma", "Marketing trends"], answer: 2, explanation: "The term 'reverse mortgage' carries outdated stigma. Reframing helps clients see it as a legitimate planning tool." },
-        { type: 'multiple', question: "How should we position a reverse mortgage to clients?", options: ["A last resort option", "A financial planning tool", "A way to cash out", "Emergency funding"], answer: 1, explanation: "Position as a proactive financial planning tool, not a desperate measure." },
-        { type: 'multiple', question: "Which is NOT a trust signal seniors look for?", options: ["Professionalism", "Aggressive sales tactics", "Clarity", "Third-party validation"], answer: 1, explanation: "Seniors respond to trust, not tactics. Aggressive selling destroys trust." },
-        { type: 'scenario', question: "A client says: 'I heard the bank takes your house.' What's your best response?", options: ["That's not exactly true, let me explain the fine print.", "You always retain full title to your home - that's federally protected. The bank never owns it.", "That only happens if you don't pay your taxes.", "Where did you hear that? That's completely wrong."], answer: 1, explanation: "Address the concern directly and confidently with facts, without being defensive or dismissive." }
+        { type: 'mythfact', question: "Homeowners today typically start their mortgage research by calling a lender directly.", answer: false, explanation: "Homeowners now start with AI tools (ChatGPT, Google AI, voice assistants) asking life-planning questions before ever contacting a lender." },
+        { type: 'mythfact', question: "Consumers are asking AI needs-based questions, not rate-based questions.", answer: true, explanation: "Questions like 'Can I retire if my house is paid off?' and 'How can I use my equity without downsizing?' naturally lead to reverse mortgage solutions." },
+        { type: 'mythfact', question: "Traditional refi and HELOC strategies are effectively serving the 55+ demographic.", answer: false, explanation: "Traditional strategies are FAILING this demographic — they don't address cash-flow needs or eliminate payment obligations." },
+        { type: 'mythfact', question: "Reverse mortgages are now showing up organically in AI search results for retirement planning.", answer: true, explanation: "Because consumers ask needs-based questions, AI naturally surfaces reverse mortgages as solutions for home equity and cash-flow planning." },
+        { type: 'mythfact', question: "Calling reverse mortgages a 'last-resort loan' is an effective positioning strategy.", answer: false, explanation: "'Last-resort loan' language is OUTDATED and DAMAGING. It prevents clients from seeing reverse as a legitimate retirement planning tool." },
+        { type: 'mythfact', question: "Reverse mortgages now sit at the center of retirement planning, not the fringe.", answer: true, explanation: "Consumer behavior has shifted — reverse is becoming part of the standard financial dialogue for 55+ homeowners." },
+        { type: 'multiple', question: "Where are homeowners starting their research today?", options: ["Calling their bank", "Visiting lender websites", "Using AI tools like ChatGPT and Google AI", "Reading newspaper ads"], answer: 2, explanation: "The AI-driven consumer shift means homeowners start with AI tools asking life-planning questions, not product-specific questions." },
+        { type: 'multiple', question: "What is the 'New Retirement Reality' challenging seniors?", options: ["Too much savings", "Cash-flow stress vs. net-worth wealth", "Low home values", "Easy access to credit"], answer: 1, explanation: "Early retirement, inflation, and rising fixed expenses create cash-flow stress even for seniors with high net worth." },
+        { type: 'multiple', question: "How should reverse mortgages be repositioned today?", options: ["As emergency funding only", "As a cash-flow planning tool", "As a last resort", "As a way to give up your home"], answer: 1, explanation: "Reverse is now a cash-flow planning tool that supports longevity, flexibility, and independence." },
+        { type: 'multiple', question: "What happens if an LO can't confidently discuss reverse options?", options: ["Nothing, clients don't care", "Borrowers will seek someone who can or assume the LO isn't modern", "Clients will wait indefinitely", "It doesn't matter for referrals"], answer: 1, explanation: "Consumers are already educated before talking to lenders. If you can't speak to reverse, they'll find someone who can." },
+        { type: 'scenario', question: "A 60-year-old client asks: 'How can I lower my mortgage payment without selling my home?' What does this signal?", options: ["They want a rate quote for a traditional refinance", "They're asking a needs-based question that could lead to a reverse mortgage conversation", "They're not a good prospect", "They should just sell their home"], answer: 1, explanation: "This is exactly the type of needs-based, life-planning question that AI tools are surfacing — and reverse mortgages answer it directly." }
     ],
     
     2: [
