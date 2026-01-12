@@ -6,16 +6,20 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Josefin+Sans:wght@300;400;500&display=swap');
 
 :root {
-    --navy: #0D1B3E;
-    --pink: #E683AC;
-    --cyan: #7DD3FC;
+    /* Primary Colors */
+    --navy: #1B2B5A;
+    --cyan: #8AD4F0;
+
+    /* Secondary Colors */
+    --pink: #D4A5C4;
+    --purple: #9B8AC4;
+    --gold: #F5C842;
+
+    /* Utility Colors */
     --white: #FFFFFF;
-    --light-bg: #F0F4F8;
+    --light-bg: #F5F7FA;
     --green: #4ADE80;
-    --red: #F87171;
-    --gold: #FBBF24;
-    --purple: #A78BFA;
-    --orange: #FB923C;
+    --red: #E57373;
 
     /* Fonts */
     --font-main: 'Poppins', sans-serif;

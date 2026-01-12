@@ -6,16 +6,18 @@ const { useState, useEffect } = React;
 
 // Luminate Bank brand colors
 const colors = {
-    navy: '#0D1B3E',
-    pink: '#E683AC',
-    cyan: '#7DD3FC',
+    // Primary
+    navy: '#1B2B5A',
+    cyan: '#8AD4F0',
+    // Secondary
+    pink: '#D4A5C4',
+    purple: '#9B8AC4',
+    gold: '#F5C842',
+    // Utility
     white: '#FFFFFF',
-    lightBg: '#F0F4F8',
+    lightBg: '#F5F7FA',
     green: '#4ADE80',
-    red: '#F87171',
-    gold: '#FBBF24',
-    purple: '#A78BFA',
-    orange: '#FB923C'
+    red: '#E57373'
 };
 
 // ============ LEADERBOARD DATA ============
@@ -175,13 +177,13 @@ const Leaderboard = ({ currentUserScore }) => {
     );
 };
 
-// Week themes
+// Week themes - using brand colors only
 const weekThemes = {
     1: { color: colors.pink, icon: '🚀', name: 'The New Era of Reverse', tagline: '"What\'s Changed & Why It Matters"' },
     2: { color: colors.cyan, icon: '💬', name: 'New Messaging', tagline: '"Say It Differently. Sell It Differently."' },
-    3: { color: colors.green, icon: '🎯', name: 'Target Markets', tagline: '"Go Beyond the Obvious"' },
-    4: { color: colors.purple, icon: '🛠️', name: 'New Tools', tagline: '"AI Scenarios, Micro-Videos & Software"' },
-    5: { color: colors.orange, icon: '🤖', name: 'AI Professional Prompts', tagline: '"Get Started with AI"' }
+    3: { color: colors.purple, icon: '🎯', name: 'Target Markets', tagline: '"Go Beyond the Obvious"' },
+    4: { color: colors.gold, icon: '🛠️', name: 'New Tools', tagline: '"AI Scenarios, Micro-Videos & Software"' },
+    5: { color: colors.navy, icon: '🤖', name: 'AI Professional Prompts', tagline: '"Get Started with AI"' }
 };
 
 // ============ FLASHCARD LESSON DATABASE ============
