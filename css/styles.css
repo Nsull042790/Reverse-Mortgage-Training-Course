@@ -523,6 +523,40 @@ button:disabled {
     filter: brightness(1.1);
 }
 
+/* Locked Week State */
+.week-card-container.locked {
+    opacity: 0.7;
+}
+
+.week-card-container.locked .week-card-info h3 {
+    color: #9CA3AF;
+}
+
+.week-card-locked {
+    padding: 14px;
+    text-align: center;
+    background-color: #F3F4F6;
+    color: #6B7280;
+    font-size: 13px;
+    border-top: 1px solid #eee;
+}
+
+/* Unlock All Button */
+.unlock-all-btn {
+    width: 100%;
+    margin-top: 16px;
+    padding: 12px;
+    border-radius: 8px;
+    font-size: 13px;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.unlock-all-btn:hover {
+    opacity: 0.9;
+    transform: translateY(-1px);
+}
+
 /* ============ FLASHCARD STYLES ============ */
 .flashcard-container {
     perspective: 1000px;

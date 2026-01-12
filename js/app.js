@@ -164,9 +164,22 @@ const weekQuestions = {
 const getProgress = () => {
     try {
         const saved = localStorage.getItem('reverseTrainingProgress');
-        return saved ? JSON.parse(saved) : { weekScores: {}, totalQuizzes: 0, streak: 0, lastPlayed: null, achievements: [] };
+        const defaultProgress = {
+            weekScores: {},
+            totalQuizzes: 0,
+            streak: 0,
+            lastPlayed: null,
+            achievements: [],
+            completedWeeks: [],
+            allUnlocked: false
+        };
+        if (saved) {
+            const parsed = JSON.parse(saved);
+            return { ...defaultProgress, ...parsed };
+        }
+        return defaultProgress;
     } catch {
-        return { weekScores: {}, totalQuizzes: 0, streak: 0, lastPlayed: null, achievements: [] };
+        return { weekScores: {}, totalQuizzes: 0, streak: 0, lastPlayed: null, achievements: [], completedWeeks: [], allUnlocked: false };
     }
 };
 
@@ -174,6 +187,22 @@ const saveProgress = (progress) => {
     try {
         localStorage.setItem('reverseTrainingProgress', JSON.stringify(progress));
     } catch {}
+};
+
+// Check if a week is unlocked
+const isWeekUnlocked = (week, progress) => {
+    if (progress.allUnlocked) return true;
+    if (week === 1) return true;
+    return progress.completedWeeks.includes(week - 1);
+};
+
+// Mark a week as completed (requires passing score of 70%)
+const markWeekCompleted = (week, score, total, progress) => {
+    const percentage = Math.round((score / total) * 100);
+    if (percentage >= 70 && !progress.completedWeeks.includes(week)) {
+        progress.completedWeeks.push(week);
+    }
+    return progress;
 };
 
 // ============ QUESTION COMPONENTS ============
@@ -724,19 +753,28 @@ function App() {
     
     const handleComplete = (score, total) => {
         setLastScore({ score, total });
-        
-        const newProgress = { ...progress };
+
+        let newProgress = { ...progress };
         const weekKey = `week${selectedWeek}`;
         if (!newProgress.weekScores[weekKey] || score > newProgress.weekScores[weekKey].score) {
             newProgress.weekScores[weekKey] = { score, total, date: new Date().toISOString() };
         }
         newProgress.totalQuizzes = (newProgress.totalQuizzes || 0) + 1;
         newProgress.lastPlayed = new Date().toISOString();
-        
+
+        // Mark week as completed if passed (70%+)
+        newProgress = markWeekCompleted(selectedWeek, score, total, newProgress);
+
         setProgress(newProgress);
         saveProgress(newProgress);
-        
+
         setScreen('results');
+    };
+
+    const toggleUnlockAll = () => {
+        const newProgress = { ...progress, allUnlocked: !progress.allUnlocked };
+        setProgress(newProgress);
+        saveProgress(newProgress);
     };
     
     const goToMenu = () => {
@@ -800,22 +838,34 @@ function App() {
                         const theme = weekThemes[week];
                         const weekScore = progress.weekScores[`week${week}`];
                         const bestScore = weekScore ? Math.round((weekScore.score / weekScore.total) * 100) : null;
+                        const unlocked = isWeekUnlocked(week, progress);
+                        const isCompleted = progress.completedWeeks.includes(week);
 
                         return React.createElement('div', {
                             key: week,
-                            className: 'week-card-container'
+                            className: `week-card-container ${!unlocked ? 'locked' : ''}`
                         },
                             React.createElement('div', { className: 'week-card-info' },
                                 React.createElement('div', {
                                     className: 'week-icon',
-                                    style: { backgroundColor: theme.color }
-                                }, theme.icon),
+                                    style: { backgroundColor: unlocked ? theme.color : '#9CA3AF' }
+                                }, unlocked ? theme.icon : '🔒'),
                                 React.createElement('div', { style: { flex: 1 } },
                                     React.createElement('div', { style: { display: 'flex', alignItems: 'center', gap: 8, flexWrap: 'wrap' } },
                                         React.createElement('span', {
                                             className: 'week-badge',
-                                            style: { color: theme.color, backgroundColor: theme.color + '20' }
+                                            style: {
+                                                color: unlocked ? theme.color : '#9CA3AF',
+                                                backgroundColor: unlocked ? theme.color + '20' : '#E5E7EB'
+                                            }
                                         }, `WEEK ${week}`),
+                                        isCompleted && React.createElement('span', {
+                                            style: {
+                                                fontSize: 11,
+                                                color: colors.green,
+                                                fontWeight: 'bold'
+                                            }
+                                        }, '✓ Completed'),
                                         bestScore !== null && React.createElement('span', {
                                             style: {
                                                 fontSize: 11,
@@ -824,11 +874,11 @@ function App() {
                                             }
                                         }, `${bestScore >= 90 ? '🏆' : bestScore >= 70 ? '⭐' : ''} Best: ${bestScore}%`)
                                     ),
-                                    React.createElement('h3', null, theme.name),
-                                    React.createElement('p', { className: 'tagline' }, theme.tagline)
+                                    React.createElement('h3', { style: { color: unlocked ? colors.navy : '#9CA3AF' } }, theme.name),
+                                    React.createElement('p', { className: 'tagline' }, unlocked ? theme.tagline : `Complete Week ${week - 1} to unlock`)
                                 )
                             ),
-                            React.createElement('div', { className: 'week-card-actions' },
+                            unlocked ? React.createElement('div', { className: 'week-card-actions' },
                                 React.createElement('button', {
                                     onClick: () => startLesson(week),
                                     className: 'week-action-btn learn-btn',
@@ -839,6 +889,8 @@ function App() {
                                     className: 'week-action-btn quiz-btn',
                                     style: { backgroundColor: theme.color }
                                 }, '📝 Quiz')
+                            ) : React.createElement('div', { className: 'week-card-locked' },
+                                React.createElement('span', null, `🔒 Complete Week ${week - 1} first (70%+ to pass)`)
                             )
                         );
                     })
@@ -854,12 +906,23 @@ function App() {
                         React.createElement('p', { className: 'subtitle' }, 'Test your knowledge across all 5 weeks')
                     )
                 ),
+                // Admin: Unlock All Weeks button
+                React.createElement('button', {
+                    onClick: toggleUnlockAll,
+                    className: 'unlock-all-btn',
+                    style: {
+                        backgroundColor: progress.allUnlocked ? colors.green : 'transparent',
+                        color: progress.allUnlocked ? 'white' : 'rgba(255,255,255,0.7)',
+                        border: progress.allUnlocked ? 'none' : '1px solid rgba(255,255,255,0.3)'
+                    }
+                }, progress.allUnlocked ? '🔓 All Weeks Unlocked (Click to Lock)' : '🔑 Admin: Unlock All Weeks'),
                 // Reset progress
                 progress.totalQuizzes > 0 && React.createElement('button', {
                     onClick: () => {
                         if (confirm('Reset all progress? This cannot be undone.')) {
-                            setProgress({ weekScores: {}, totalQuizzes: 0, streak: 0, lastPlayed: null, achievements: [] });
-                            saveProgress({ weekScores: {}, totalQuizzes: 0, streak: 0, lastPlayed: null, achievements: [] });
+                            const resetProgress = { weekScores: {}, totalQuizzes: 0, streak: 0, lastPlayed: null, achievements: [], completedWeeks: [], allUnlocked: false };
+                            setProgress(resetProgress);
+                            saveProgress(resetProgress);
                         }
                     },
                     className: 'reset-btn'
