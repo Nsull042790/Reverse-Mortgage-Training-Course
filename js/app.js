@@ -18,6 +18,163 @@ const colors = {
     orange: '#FB923C'
 };
 
+// ============ LEADERBOARD DATA ============
+// This will be replaced with SharePoint/Excel connection
+// Structure: { id, name, department, weeksCompleted, totalScore, lastActive }
+const LEADERBOARD_CONFIG = {
+    // Set to true when SharePoint is connected
+    useSharePoint: false,
+    // SharePoint Excel file URL (update when connecting)
+    sharepointUrl: '',
+    // Refresh interval in milliseconds (30 seconds)
+    refreshInterval: 30000
+};
+
+// Placeholder leaderboard data - replace with SharePoint fetch
+const getLeaderboardData = async () => {
+    // TODO: Replace with SharePoint/Excel API call
+    // Example: const response = await fetch(LEADERBOARD_CONFIG.sharepointUrl);
+    // return await response.json();
+
+    // Placeholder data for UI development
+    return [
+        { id: 1, name: 'Sarah Johnson', department: 'Retail Lending', weeksCompleted: 5, totalScore: 92, lastActive: '2 hours ago', avatar: 'SJ' },
+        { id: 2, name: 'Mike Chen', department: 'Branch Sales', weeksCompleted: 5, totalScore: 88, lastActive: '1 hour ago', avatar: 'MC' },
+        { id: 3, name: 'Emily Rodriguez', department: 'Mortgage Ops', weeksCompleted: 4, totalScore: 85, lastActive: '3 hours ago', avatar: 'ER' },
+        { id: 4, name: 'David Kim', department: 'Retail Lending', weeksCompleted: 4, totalScore: 82, lastActive: '5 hours ago', avatar: 'DK' },
+        { id: 5, name: 'Lisa Thompson', department: 'Branch Sales', weeksCompleted: 3, totalScore: 78, lastActive: '1 day ago', avatar: 'LT' },
+        { id: 6, name: 'James Wilson', department: 'Mortgage Ops', weeksCompleted: 3, totalScore: 75, lastActive: '2 days ago', avatar: 'JW' },
+        { id: 7, name: 'Amanda Foster', department: 'Retail Lending', weeksCompleted: 2, totalScore: 70, lastActive: '3 days ago', avatar: 'AF' },
+        { id: 8, name: 'Robert Martinez', department: 'Branch Sales', weeksCompleted: 2, totalScore: 68, lastActive: '1 week ago', avatar: 'RM' },
+        { id: 9, name: 'Jennifer Lee', department: 'Mortgage Ops', weeksCompleted: 1, totalScore: 45, lastActive: '1 week ago', avatar: 'JL' },
+        { id: 10, name: 'Chris Brown', department: 'Branch Sales', weeksCompleted: 1, totalScore: 40, lastActive: '2 weeks ago', avatar: 'CB' }
+    ];
+};
+
+// ============ LEADERBOARD COMPONENT ============
+const Leaderboard = ({ currentUserScore }) => {
+    const [leaders, setLeaders] = useState([]);
+    const [loading, setLoading] = useState(true);
+    const [filter, setFilter] = useState('all'); // all, week, department
+
+    useEffect(() => {
+        const fetchLeaderboard = async () => {
+            setLoading(true);
+            const data = await getLeaderboardData();
+            setLeaders(data);
+            setLoading(false);
+        };
+
+        fetchLeaderboard();
+
+        // Set up refresh interval for live updates
+        const interval = setInterval(fetchLeaderboard, LEADERBOARD_CONFIG.refreshInterval);
+        return () => clearInterval(interval);
+    }, []);
+
+    const getRankBadge = (rank) => {
+        if (rank === 1) return '🥇';
+        if (rank === 2) return '🥈';
+        if (rank === 3) return '🥉';
+        return `#${rank}`;
+    };
+
+    const getProgressColor = (weeksCompleted) => {
+        if (weeksCompleted === 5) return colors.green;
+        if (weeksCompleted >= 3) return colors.cyan;
+        if (weeksCompleted >= 1) return colors.gold;
+        return '#ddd';
+    };
+
+    return React.createElement('div', { className: 'leaderboard-sidebar' },
+        // Header
+        React.createElement('div', { className: 'leaderboard-header' },
+            React.createElement('h3', null, '🏆 Leaderboard'),
+            React.createElement('p', { className: 'leaderboard-subtitle' }, 'Live Training Progress')
+        ),
+
+        // Filter tabs
+        React.createElement('div', { className: 'leaderboard-filters' },
+            React.createElement('button', {
+                className: `filter-btn ${filter === 'all' ? 'active' : ''}`,
+                onClick: () => setFilter('all')
+            }, 'All'),
+            React.createElement('button', {
+                className: `filter-btn ${filter === 'week' ? 'active' : ''}`,
+                onClick: () => setFilter('week')
+            }, 'This Week'),
+            React.createElement('button', {
+                className: `filter-btn ${filter === 'department' ? 'active' : ''}`,
+                onClick: () => setFilter('department')
+            }, 'Dept')
+        ),
+
+        // Stats summary
+        React.createElement('div', { className: 'leaderboard-stats' },
+            React.createElement('div', { className: 'lb-stat' },
+                React.createElement('span', { className: 'lb-stat-value' }, leaders.length),
+                React.createElement('span', { className: 'lb-stat-label' }, 'Enrolled')
+            ),
+            React.createElement('div', { className: 'lb-stat' },
+                React.createElement('span', { className: 'lb-stat-value' }, leaders.filter(l => l.weeksCompleted === 5).length),
+                React.createElement('span', { className: 'lb-stat-label' }, 'Completed')
+            ),
+            React.createElement('div', { className: 'lb-stat' },
+                React.createElement('span', { className: 'lb-stat-value' }, `${Math.round(leaders.reduce((sum, l) => sum + l.totalScore, 0) / leaders.length || 0)}%`),
+                React.createElement('span', { className: 'lb-stat-label' }, 'Avg Score')
+            )
+        ),
+
+        // Leaders list
+        React.createElement('div', { className: 'leaderboard-list' },
+            loading
+                ? React.createElement('div', { className: 'leaderboard-loading' }, 'Loading...')
+                : leaders.map((leader, index) =>
+                    React.createElement('div', {
+                        key: leader.id,
+                        className: `leaderboard-item ${index < 3 ? 'top-three' : ''}`
+                    },
+                        React.createElement('div', { className: 'lb-rank' }, getRankBadge(index + 1)),
+                        React.createElement('div', {
+                            className: 'lb-avatar',
+                            style: { backgroundColor: getProgressColor(leader.weeksCompleted) }
+                        }, leader.avatar),
+                        React.createElement('div', { className: 'lb-info' },
+                            React.createElement('p', { className: 'lb-name' }, leader.name),
+                            React.createElement('p', { className: 'lb-dept' }, leader.department),
+                            React.createElement('div', { className: 'lb-progress-bar' },
+                                React.createElement('div', {
+                                    className: 'lb-progress-fill',
+                                    style: {
+                                        width: `${(leader.weeksCompleted / 5) * 100}%`,
+                                        backgroundColor: getProgressColor(leader.weeksCompleted)
+                                    }
+                                })
+                            )
+                        ),
+                        React.createElement('div', { className: 'lb-score' },
+                            React.createElement('span', { className: 'lb-score-value' }, `${leader.totalScore}%`),
+                            React.createElement('span', { className: 'lb-weeks' }, `${leader.weeksCompleted}/5 wks`)
+                        )
+                    )
+                )
+        ),
+
+        // SharePoint connection status
+        React.createElement('div', { className: 'leaderboard-footer' },
+            React.createElement('div', {
+                className: 'connection-status',
+                style: { color: LEADERBOARD_CONFIG.useSharePoint ? colors.green : colors.gold }
+            },
+                LEADERBOARD_CONFIG.useSharePoint
+                    ? '🟢 Live - SharePoint Connected'
+                    : '🟡 Demo Mode - Connect SharePoint'
+            ),
+            React.createElement('p', { className: 'last-updated' }, 'Updates every 30s')
+        )
+    );
+};
+
 // Week themes
 const weekThemes = {
     1: { color: colors.pink, icon: '🚀', name: 'The New Era of Reverse', tagline: '"What\'s Changed & Why It Matters"' },
@@ -810,28 +967,34 @@ function App() {
     
     // Menu screen
     return (
-        React.createElement('div', { style: { minHeight: '100vh', backgroundColor: colors.navy } },
-            // Header
-            React.createElement('div', { className: 'header-gradient' },
-                React.createElement('h1', null, '🏠 Reverse Mortgage Mastery'),
-                React.createElement('p', null, '5-Week Training Quiz Hub'),
-                React.createElement('div', { className: 'stats-bar' },
-                    React.createElement('div', { className: 'stat-item' },
-                        React.createElement('p', { className: 'stat-value' }, `${Object.keys(progress.weekScores).length}/5`),
-                        React.createElement('p', { className: 'stat-label' }, 'Weeks Completed')
+        React.createElement('div', { className: 'app-layout' },
+            // Leaderboard Sidebar
+            React.createElement(Leaderboard, { currentUserScore: progress }),
+
+            // Main Content
+            React.createElement('div', { className: 'main-content' },
+                React.createElement('div', { style: { minHeight: '100vh', backgroundColor: colors.navy } },
+                    // Header
+                    React.createElement('div', { className: 'header-gradient' },
+                        React.createElement('h1', null, '🏠 Reverse Mortgage Mastery'),
+                        React.createElement('p', null, '5-Week Training Quiz Hub'),
+                        React.createElement('div', { className: 'stats-bar' },
+                            React.createElement('div', { className: 'stat-item' },
+                                React.createElement('p', { className: 'stat-value' }, `${Object.keys(progress.weekScores).length}/5`),
+                                React.createElement('p', { className: 'stat-label' }, 'Weeks Completed')
+                            ),
+                            React.createElement('div', { className: 'stat-item' },
+                                React.createElement('p', { className: 'stat-value' }, progress.totalQuizzes || 0),
+                                React.createElement('p', { className: 'stat-label' }, 'Quizzes Taken')
+                            ),
+                            React.createElement('div', { className: 'stat-item' },
+                                React.createElement('p', { className: 'stat-value' }, Object.values(progress.weekScores).reduce((sum, w) => sum + (w.score || 0), 0)),
+                                React.createElement('p', { className: 'stat-label' }, 'Total Points')
+                            )
+                        )
                     ),
-                    React.createElement('div', { className: 'stat-item' },
-                        React.createElement('p', { className: 'stat-value' }, progress.totalQuizzes || 0),
-                        React.createElement('p', { className: 'stat-label' }, 'Quizzes Taken')
-                    ),
-                    React.createElement('div', { className: 'stat-item' },
-                        React.createElement('p', { className: 'stat-value' }, Object.values(progress.weekScores).reduce((sum, w) => sum + (w.score || 0), 0)),
-                        React.createElement('p', { className: 'stat-label' }, 'Total Points')
-                    )
-                )
-            ),
-            // Week selection
-            React.createElement('div', { className: 'container' },
+                    // Week selection
+                    React.createElement('div', { className: 'container' },
                 React.createElement('h2', { className: 'text-white mb-16 fs-18' }, 'Choose a Week'),
                 React.createElement('div', null,
                     [1, 2, 3, 4, 5].map(week => {
@@ -927,8 +1090,10 @@ function App() {
                     },
                     className: 'reset-btn'
                 }, 'Reset Progress'),
-                // Footer
-                React.createElement('p', { className: 'footer' }, 'Luminate Bank | Retirement Mortgage Training')
+                    // Footer
+                    React.createElement('p', { className: 'footer' }, 'Luminate Bank | Retirement Mortgage Training')
+                )
+                )
             )
         )
     );

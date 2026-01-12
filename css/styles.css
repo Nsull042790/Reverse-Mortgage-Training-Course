@@ -2,6 +2,9 @@
    Brand Colors & Base Styles
 ================================================== */
 
+/* Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Josefin+Sans:wght@300;400;500&display=swap');
+
 :root {
     --navy: #0D1B3E;
     --pink: #E683AC;
@@ -13,6 +16,10 @@
     --gold: #FBBF24;
     --purple: #A78BFA;
     --orange: #FB923C;
+
+    /* Fonts */
+    --font-main: 'Poppins', sans-serif;
+    --font-sub: 'Josefin Sans', sans-serif;
 }
 
 * {
@@ -22,9 +29,229 @@
 }
 
 body {
-    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-    background-color: var(--navy);
+    font-family: var(--font-sub);
+    background-color: var(--white);
     min-height: 100vh;
+}
+
+h1, h2, h3, h4, h5, h6, .font-main {
+    font-family: var(--font-main);
+    font-weight: 700;
+}
+
+/* ============ APP LAYOUT WITH LEADERBOARD ============ */
+.app-layout {
+    display: flex;
+    min-height: 100vh;
+    background-color: var(--white);
+}
+
+.main-content {
+    flex: 1;
+    min-width: 0;
+}
+
+/* ============ LEADERBOARD SIDEBAR ============ */
+.leaderboard-sidebar {
+    width: 320px;
+    background: linear-gradient(180deg, var(--navy) 0%, #1a2d5a 100%);
+    color: white;
+    display: flex;
+    flex-direction: column;
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    overflow-y: auto;
+}
+
+.leaderboard-header {
+    padding: 24px 20px 16px;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+
+.leaderboard-header h3 {
+    font-family: var(--font-main);
+    font-size: 20px;
+    margin-bottom: 4px;
+}
+
+.leaderboard-subtitle {
+    font-size: 13px;
+    opacity: 0.7;
+}
+
+.leaderboard-filters {
+    display: flex;
+    padding: 12px 20px;
+    gap: 8px;
+}
+
+.filter-btn {
+    flex: 1;
+    padding: 8px 12px;
+    border: 1px solid rgba(255,255,255,0.2);
+    border-radius: 6px;
+    background: transparent;
+    color: rgba(255,255,255,0.7);
+    font-size: 12px;
+    font-family: var(--font-sub);
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.filter-btn:hover {
+    background: rgba(255,255,255,0.1);
+    transform: none;
+}
+
+.filter-btn.active {
+    background: var(--pink);
+    border-color: var(--pink);
+    color: white;
+}
+
+.leaderboard-stats {
+    display: flex;
+    justify-content: space-around;
+    padding: 16px 20px;
+    background: rgba(255,255,255,0.05);
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+
+.lb-stat {
+    text-align: center;
+}
+
+.lb-stat-value {
+    display: block;
+    font-family: var(--font-main);
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--cyan);
+}
+
+.lb-stat-label {
+    font-size: 11px;
+    opacity: 0.6;
+}
+
+.leaderboard-list {
+    flex: 1;
+    padding: 12px;
+    overflow-y: auto;
+}
+
+.leaderboard-loading {
+    text-align: center;
+    padding: 40px;
+    opacity: 0.6;
+}
+
+.leaderboard-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px;
+    border-radius: 10px;
+    margin-bottom: 8px;
+    background: rgba(255,255,255,0.03);
+    transition: all 0.2s;
+}
+
+.leaderboard-item:hover {
+    background: rgba(255,255,255,0.08);
+}
+
+.leaderboard-item.top-three {
+    background: rgba(255,255,255,0.08);
+}
+
+.lb-rank {
+    font-size: 14px;
+    font-weight: 600;
+    width: 28px;
+    text-align: center;
+}
+
+.lb-avatar {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    font-weight: 600;
+    color: white;
+    flex-shrink: 0;
+}
+
+.lb-info {
+    flex: 1;
+    min-width: 0;
+}
+
+.lb-name {
+    font-family: var(--font-main);
+    font-size: 13px;
+    font-weight: 600;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.lb-dept {
+    font-size: 11px;
+    opacity: 0.6;
+    margin-bottom: 4px;
+}
+
+.lb-progress-bar {
+    height: 4px;
+    background: rgba(255,255,255,0.1);
+    border-radius: 2px;
+    overflow: hidden;
+}
+
+.lb-progress-fill {
+    height: 100%;
+    border-radius: 2px;
+    transition: width 0.3s;
+}
+
+.lb-score {
+    text-align: right;
+    flex-shrink: 0;
+}
+
+.lb-score-value {
+    display: block;
+    font-family: var(--font-main);
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--green);
+}
+
+.lb-weeks {
+    font-size: 10px;
+    opacity: 0.6;
+}
+
+.leaderboard-footer {
+    padding: 16px 20px;
+    border-top: 1px solid rgba(255,255,255,0.1);
+    text-align: center;
+}
+
+.connection-status {
+    font-size: 12px;
+    font-weight: 500;
+    margin-bottom: 4px;
+}
+
+.last-updated {
+    font-size: 10px;
+    opacity: 0.5;
 }
 
 button {
@@ -754,5 +981,31 @@ button:disabled {
     .week-action-btn.learn-btn {
         border-right: none;
         border-bottom: 1px solid #eee;
+    }
+
+    /* Hide leaderboard on mobile */
+    .leaderboard-sidebar {
+        display: none;
+    }
+
+    .app-layout {
+        flex-direction: column;
+    }
+}
+
+/* Tablet - show compact leaderboard */
+@media (min-width: 481px) and (max-width: 1024px) {
+    .leaderboard-sidebar {
+        width: 280px;
+    }
+
+    .lb-name {
+        font-size: 12px;
+    }
+
+    .lb-avatar {
+        width: 32px;
+        height: 32px;
+        font-size: 11px;
     }
 }
